@@ -1,9 +1,11 @@
+const navbarText = Cypress.env('navbarText')
+
 context('My first test', () => {
   beforeEach(() => {
-    cy.visit('http://example.cypress.io/commands/actions')
+    cy.visit('/')
   })
   it('correctly renders the cypress website link', () => {
-    cy.findByText('cypress.io').should('exist')
+    cy.findByText(navbarText).should('exist')
   })
 //  it('has an h1 on the page', () => {
 //    cy.get('h1').should('exist');
