@@ -4,9 +4,21 @@ context('My first test', () => {
   beforeEach(() => {
     cy.visit('/')
   })
-  it('correctly renders the cypress website link', () => {
-    cy.findByText(navbarText).should('exist')
+      it('types into an email field', () => {
+      cy.visit('/commands/actions')
+      cy.findByPlaceholderText('Email').type('test@email.com')
+      cy.wait(2000).then(() => {
+        console.log("test finished")
+        fetch('https://api.spacexdata.com/v3/missions')
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data)
+        })
+      })
   })
+//  it('correctly renders the cypress website link', () => {
+//    cy.findByText(navbarText).should('exist')
+//  })
 //  it('has an h1 on the page', () => {
 //    cy.get('h1').should('exist');
 //  })
