@@ -12,27 +12,27 @@ context('My first test', () => {
     cy.setLocalStorage('token', 'abc123')
   })
 
-//  it('uses fixture data in a network request', function() {
-//    cy.visit('/commands/network-requests')
-//    cy.intercept('GET', '**/comments/*', this.data).as('getComment') //looking for a get request that is pointing to our commends endpoint
-//    cy.get('.network-btn').click()
-//    cy.wait('@getComment').then((res) => {
-//      cy.log('Response:', res)
-//    })
-//  })
-//
-//  it('pulls data from a fixture', () => {
-//    cy.fixture('example').then((data) => {
-//      cy.log('DATA: ', data)
-//    })
-//  })
+  //  it('uses fixture data in a network request', function() {
+  //    cy.visit('/commands/network-requests')
+  //    cy.intercept('GET', '**/comments/*', this.data).as('getComment') //looking for a get request that is pointing to our commends endpoint
+  //    cy.get('.network-btn').click()
+  //    cy.wait('@getComment').then((res) => {
+  //      cy.log('Response:', res)
+  //    })
+  //  })
+  //
+  //  it('pulls data from a fixture', () => {
+  //    cy.fixture('example').then((data) => {
+  //      cy.log('DATA: ', data)
+  //    })
+  //  })
 
-//  it('updates fixtures data inline', () => {
-//    cy.fixture('example').then((data) => {
-//      data.email = 'updated@mail.com'
-//      cy.log("UPADTED: ", data)
-//    })
-//  })
+  //  it('updates fixtures data inline', () => {
+  //    cy.fixture('example').then((data) => {
+  //      data.email = 'updated@mail.com'
+  //      cy.log("UPADTED: ", data)
+  //    })
+  //  })
   //  beforeEach(() => {
   //    cy.visit('/')
   //  })
