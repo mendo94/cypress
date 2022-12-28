@@ -8,13 +8,24 @@ context('My first test', () => {
     cy.request('https://api.spacexdata.com/v3/missions').its('body').should('have.length', 10)
   })
 
-  it('visits the homepage', () => {
+  beforeEach(() => {
     cy.visit('/')
   })
 
-  it('should have an h1 on the page', () => {
-   cy.visit('/')
+  afterEach(() => {
+    cy.log('after each hook is here')
+  })
+
+  after(() => {
+    cy.log('the final after hook runs once')
+  })
+
+  it('visits the homepage', () => {
     cy.get('h1').should('exist')
+  })
+
+  it('should have an h1 on the page', () => {
+    cy.get('h1').should('contain.text', 'Kitchen Sink')
   })
 
 
