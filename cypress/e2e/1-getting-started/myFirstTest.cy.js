@@ -1,32 +1,60 @@
 const navbarText = Cypress.env('navbarText')
 
 context('My first test', () => {
+    beforeEach(() => {
+        cy.fixture('example').then(function (data) {
+            this.data = data
+            cy.log('THIS: ', this.data)
+        })
+    })
+
+    it('uses fixture data in a network request', function() {
+        cy.visit('/commands/network-requests')
+        cy.intercept('GET', '**/comments/*', this.data).as('getComment') //looking for a get request that is pointing to our commends endpoint
+        cy.get('.network-btn').click()
+        cy.wait('@getComment').then((res) => {
+            cy.log('Response:', res)
+        })
+    })
+
+    it('pulls data from a fixture', () => {
+        cy.fixture('example').then((data) => {
+            cy.log('DATA: ', data)
+        })
+    })
+
+    it('updates fixtures data inline', () => {
+        cy.fixture('example').then((data) => {
+            data.email = 'updated@mail.com'
+            cy.log("UPADTED: ", data)
+        })
+    })
 //  beforeEach(() => {
 //    cy.visit('/')
 //  })
-  before(() => {
-    cy.request('https://api.spacexdata.com/v3/missions').its('body').should('have.length', 10)
-  })
-
-  beforeEach(() => {
-    cy.visit('/')
-  })
-
-  afterEach(() => {
-    cy.log('after each hook is here')
-  })
-
-  after(() => {
-    cy.log('the final after hook runs once')
-  })
-
-  it('visits the homepage', () => {
-    cy.get('h1').should('exist')
-  })
-
-  it('should have an h1 on the page', () => {
-    cy.get('h1').should('contain.text', 'Kitchen Sink')
-  })
+//  before(() => {
+//    cy.request('https://api.spacexdata.com/v3/missions').its('body').should('have.length', 10)
+//  })
+//
+//  beforeEach(() => {
+//    cy.visit('/')
+//  })
+//
+//  afterEach(() => {
+//    cy.log('after each hook is here')
+//  })
+//
+//  after(() => {
+//    cy.log('the final after hook runs once')
+//  })
+//
+//  it('visits the homepage', () => {
+//    cy.get('h1').should('exist')
+//  })
+//
+//  it('should have an h1 on the page', () => {
+//    cy.get('h1').should('contain.text', 'Kitchen Sink')
+//  })
 
 
 //  it('links to the actions page correctly', () => {
